@@ -19,6 +19,8 @@ LINE = (
 def main() -> None:
     if not LINE or len(LINE) > 120 or not LINE.strip():
         raise ValueError("fortune must be 1-120 non-blank characters")
+    if LINE != LINE.strip():
+        raise ValueError("fortune must not start or end with whitespace")
     if "\n" in LINE or "\r" in LINE:
         raise ValueError("fortune must be a single line")
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
